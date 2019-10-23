@@ -1,8 +1,8 @@
 {
     "token" : "659414060:AAFwq-ZT-IJVkGGS78o4N4NFfw_1BkMIU5Q",
-    "admins" : ["ADMIN USERNAMES (ARRAY)"],
-    "intro" : "YOUR INTRO HERE",
-    "botname" :"YOUR BOT NAME HERE",
+    "admins" : ["ADMIN USERNAMES (master_long)"],
+    "intro" : "Hello",
+    "botname" :"OnionShopTestBot",
     "signup" : SIGNUP BONUS (NUMBER),
     "ref" : REFERRAL BONUS (NUMBER)
 }

@@ -73,7 +73,7 @@ def dstar(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         du = data['dstar'][user]
-        dstar_msg = "Download dSTAR messenger, register your account> [Android], [iOS], [Desktop]. https://dstarlab.com"
+        dstar_msg = "Download dSTAR messenger, register your account.\n"+"Android, iOS, Desktop.\n"+"https://dstarlab.com"
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(dstar_msg,reply_markup=reply_markup)
         msg = 'Your dSTAR username is {}'.format(du)

@@ -23,6 +23,8 @@ def start(update, context):
         user = str(update.message.chat.username)
         if user not in data['users']:
             data['users'].append(user)
+            if user not in data['telegram']:
+                data['telegram'][user] = ""
             if user not in data['twitter']:
                 data['twitter'][user] = ""
             if user not in data['trx']:
@@ -115,6 +117,11 @@ def extra(update, context):
             data['process'][user] = "trx"
             json.dump(data,open('users.json','w'))
             update.message.reply_text("WALLET MESSAGE")
+        elif data["process"][user] == 'telegram':
+            data['telegram'][user] = update.message.text
+            data['process'][user] = "telegram"
+            json.dump(data,open('users.json','w'))
+            update.message.reply_text("TELEGRAM MESSAGE")
         elif data["process"][user] == 'trx':
             data['trx'][user] = update.message.text
             data['process'][user] = "finished"

@@ -56,6 +56,7 @@ def twitter(update, context):
         twtr_user = data['twitter'][user]
         else:
         twitter_msg = "Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab."
+        update.message.reply_text(twitter_msg,reply_markup=reply_markup)
         msg = 'Your twitter username is {}'.format(twtr_user)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)

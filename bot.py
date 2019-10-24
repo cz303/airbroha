@@ -11,7 +11,7 @@ signup = config['signup']
 refr = config['ref']
 admins = config['admins']
 data = []
-dash_key = [['Twitter','dSTAR messenger','TRX(TRON)'],['Referral Link','Referred'],['Balance','Details']]
+dash_key = [['Twitter','dSTAR','TRX'],['Referral Link','Referred'],['Balance','Details']]
 admin_key = [['Users','Get List']]
 
 webhook_url = 'Your Webook'
@@ -25,10 +25,10 @@ def start(update, context):
             data['users'].append(user)
             if user not in data['twitter']:
                 data['twitter'][user] = ""
-            if user not in data['eth']:
-                data['eth'][user] = ""
-            if user not in data['dSTAR messenger']:
-                data['dSTAR messenger'][user] = ""
+            if user not in data['trx']:
+                data['trx'][user] = ""
+            if user not in data['dSTAR']:
+                data['dSTAR'][user] = ""
             ref_id = update.message.text.split()
             if len(ref_id) > 1:
                 data['ref'][user] = ref_id[1]
@@ -43,11 +43,11 @@ def start(update, context):
             data['process'][user] = "twitter"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
-            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab."\n+"Make some share, like, comment.'
+            started_msg = ''
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:
-            welcome_msg = "Welcome to dSTAR airdrop bot!\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab.\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab.\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 
@@ -63,19 +63,19 @@ def twitter(update, context):
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
-def eth(update, context):
+def trx(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        eth_addr = data['eth'][user]
-        msg = 'Your TRX(TRON) address is {}'.format(eth_addr)
+        trx_addr = data['trx'][user]
+        msg = 'Your TRX address is {}'.format(trx_addr)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
-def discord(update, context):
+def dStar(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        du = data['discord'][user]
-        msg = 'Download dSTAR messenger, register your account> [Android], [iOS], [Desktop] Your dStar username? {}'.format(du)
+        du = data['dSTAR'][user]
+        msg = 'Your dSTAR username is {}'.format(du)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
@@ -92,15 +92,15 @@ def extra(update, context):
         user = str(update.message.chat.username)
         if data["process"][user] == 'twitter':
             data['twitter'][user] = update.message.text
-            data['process'][user] = 'dSTAR messenger'
+            data['process'][user] = 'dSTAR'
             json.dump(data,open('users.json','w'))
             update.message.reply_text("Download dSTAR messenger, register your account https://dstarlab.com/.\n"+"Your dStar username?")
-        elif data["process"][user] == 'dSTAR messenger':
-            data['discord'][user] = update.message.text
-            data['process'][user] = "eth"
+        elif data["process"][user] == 'dSTAR':
+            data['dSTAR'][user] = update.message.text
+            data['process'][user] = "trx"
             json.dump(data,open('users.json','w'))
             update.message.reply_text("WALLET MESSAGE")
-        elif data["process"][user] == 'eth':
+        elif data["process"][user] == 'trx':
             data['eth'][user] = update.message.text
             data['process'][user] = "finished"
             json.dump(data,open('users.json','w'))
@@ -144,13 +144,13 @@ def get_file(update, context):
         user = str(update.message.chat.username)
         if user in admins:
             f = open('users.csv','w')
-            f.write("id,username,twitter username,eth address,discord,no. of persons referred,referred by\n")
+            f.write("id,username,twitter username,trx address,dSTAR,no. of persons referred,referred by\n")
             for u in data['users']:
                 i = str(data['id'][u])
                 refrrd = 0
                 if i in data['referred']:
                     refrrd = data['referred'][i]
-                d = "{},{},{},{},{},{},{}\n".format(i,u,data['twitter'][u],data['eth'][u],data['discord'][u],refrrd,data['ref'][u])
+                d = "{},{},{},{},{},{},{}\n".format(i,u,data['twitter'][u],data['trx'][u],data['dSTAR'][u],refrrd,data['ref'][u])
                 f.write(d)
             f.close()
             bot = Bot(TOKEN)
@@ -181,8 +181,8 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("admin",admin))
     dp.add_handler(RegexHandler("^Twitter$",twitter))
-    dp.add_handler(RegexHandler("^TRX address$",eth))
-    dp.add_handler(RegexHandler("^dStar$",discord))
+    dp.add_handler(RegexHandler("^TRX$",trx))
+    dp.add_handler(RegexHandler("^dSTAR$",dSTAR))
     dp.add_handler(RegexHandler("^Referral Link$",link))
     dp.add_handler(RegexHandler("^Referred$",ref))
     dp.add_handler(RegexHandler("^Users$",users))

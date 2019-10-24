@@ -43,7 +43,7 @@ def start(update, context):
             data['process'][user] = "twitter"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
-            started_msg = ''
+            started_msg = 'Welcome to dSTAR airdrop bot!'
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:

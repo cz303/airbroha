@@ -42,7 +42,7 @@ def start(update, context):
             data['id'][user] = data['total']
             data['process'][user] = "twitter"
         else:
-            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 
@@ -54,7 +54,7 @@ def twitter(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         twtr_user = data['twitter'][user]
-        twitter_msg = "Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab."
+        twitter_msg = "Follow dSTAR https://twitter.com/dSTARLab.\n"+"Make some share, like, comment."
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(twitter_msg,reply_markup=reply_markup)
         msg = 'Your twitter username is {}'.format(twtr_user)
@@ -73,7 +73,7 @@ def dstar(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         du = data['dstar'][user]
-        dstar_msg = "Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com"
+        dstar_msg = "Download dSTAR messenger, register your account> [Android], [iOS], [Desktop]. https://dstarlab.com"
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(dstar_msg,reply_markup=reply_markup)
         msg = 'Your dSTAR username is {}'.format(du)

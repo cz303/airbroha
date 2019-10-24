@@ -107,7 +107,7 @@ def link(update, context):
 def extra(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-         if data["process"][user] == 'telegram':
+        if data["process"][user] == 'telegram':
             data['telegram'][user] = update.message.text
             data['process'][user] = "telegram"
             json.dump(data,open('users.json','w'))

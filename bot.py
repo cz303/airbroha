@@ -23,8 +23,6 @@ def start(update, context):
         user = str(update.message.chat.username)
         if user not in data['users']:
             data['users'].append(user)
-            if user not in data['telegram']:
-                data['telegram'][user] = ""
             if user not in data['twitter']:
                 data['twitter'][user] = ""
             if user not in data['trx']:
@@ -51,17 +49,6 @@ def start(update, context):
     else:
         msg = '{} \n. I don\'t reply in group, come in private'.format(config['intro'])
         update.message.reply_text(msg)
-
-def telegram(update, context):
-    if update.message.chat.type == 'private':
-        user = str(update.message.chat.username)
-        telegram_user = data['telegram'][user]
-        telegram_msg = "Follow dSTAR telegram channel https://t.me/dstarlab."
-        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
-        update.message.reply_text(telegram_msg,reply_markup=reply_markup)
-        msg = 'Your teleram username is {}'.format(telegram_user)
-        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
-        update.message.reply_text(msg,reply_markup=reply_markup)
         
 def twitter(update, context):
     if update.message.chat.type == 'private':
@@ -107,12 +94,7 @@ def link(update, context):
 def extra(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        if data["process"][user] == 'telegram':
-            data['telegram'][user] = update.message.text
-            data['process'][user] = "telegram"
-            json.dump(data,open('users.json','w'))
-            update.message.reply_text("TELEGRAM MESSAGE")
-        elif data["process"][user] == 'twitter':
+        if data["process"][user] == 'twitter':
             data['twitter'][user] = update.message.text
             data['process'][user] = 'dstar'
             json.dump(data,open('users.json','w'))
@@ -166,7 +148,7 @@ def get_file(update, context):
         user = str(update.message.chat.username)
         if user in admins:
             f = open('users.csv','w')
-            f.write("id,username,telegram,twitter username,trx address,dstar,no. of persons referred,referred by\n")
+            f.write("id,username,twitter username,trx address,dstar,no. of persons referred,referred by\n")
             for u in data['users']:
                 i = str(data['id'][u])
                 refrrd = 0
@@ -202,7 +184,6 @@ if __name__ == '__main__':
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("admin",admin))
-    dp.add_handler(RegexHandler("^Telegram$",telegram))
     dp.add_handler(RegexHandler("^Twitter$",twitter))
     dp.add_handler(RegexHandler("^TRX$",trx))
     dp.add_handler(RegexHandler("^dSTAR$",dstar))

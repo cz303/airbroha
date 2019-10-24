@@ -1,13 +1,7 @@
 {
     "token" : "659414060:AAFwq-ZT-IJVkGGS78o4N4NFfw_1BkMIU5Q",
     "admins" : "master_long, romantrata",
-    "intro" : "Welcome to dSTAR airdrop bot!
-Follow dSTAR telegram channel
-Download dSTAR messenger and you will receive 15 TRX(TRON)
-Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON)
-Additionally, you can receive 5 TRX(TRON) for each invited user!
-
-https://dstarlab.com",
+    "intro" : "Welcome to dSTAR airdrop bot!,
     "botname" : "OnionShopTestBot",
     "signup" : 2,
     "ref" : 1

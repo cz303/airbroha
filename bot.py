@@ -71,7 +71,7 @@ def trx(update, context):
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
-def dStar(update, context):
+def dstar(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         du = data['dstar'][user]
@@ -96,7 +96,7 @@ def extra(update, context):
             json.dump(data,open('users.json','w'))
             update.message.reply_text("dSTAR MESSAGE")
         elif data["process"][user] == 'dstar':
-            data['dSTAR'][user] = update.message.text
+            data['dstar'][user] = update.message.text
             data['process'][user] = "trx"
             json.dump(data,open('users.json','w'))
             update.message.reply_text("WALLET MESSAGE")

@@ -11,7 +11,7 @@ signup = config['signup']
 refr = config['ref']
 admins = config['admins']
 data = []
-dash_key = [['Twitter','dSTAR','TRX'],['Referral Link','Referred'],['Balance','Details']]
+dash_key = ['Telegram','dSTAR','Twitter'],['TRX','Referral Link','Referred'],['Balance','Details']]
 admin_key = [['Users','Get List']]
 
 webhook_url = 'Your Webook'
@@ -50,6 +50,17 @@ def start(update, context):
         msg = '{} \n. I don\'t reply in group, come in private'.format(config['intro'])
         update.message.reply_text(msg)
 
+def telegram(update, context):
+    if update.message.chat.type == 'private':
+        user = str(update.message.chat.username)
+        twtr_user = data['telegram'][user]
+        twitter_msg = "Follow dSTAR telegram channel https://t.me/dstarlab."
+        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
+        update.message.reply_text(twitter_msg,reply_markup=reply_markup)
+        msg = 'Your teleram username is {}'.format(telegram_user)
+        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
+        update.message.reply_text(msg,reply_markup=reply_markup)
+        
 def twitter(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
@@ -184,6 +195,7 @@ if __name__ == '__main__':
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("admin",admin))
+    dp.add_handler(RegexHandler("^Telegram$",telegram))
     dp.add_handler(RegexHandler("^Twitter$",twitter))
     dp.add_handler(RegexHandler("^TRX$",trx))
     dp.add_handler(RegexHandler("^dSTAR$",dstar))

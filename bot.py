@@ -83,6 +83,9 @@ def dstar(update, context):
 def link(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
+        link_msg = "Well done! Your referal link"
+        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
+        update.message.reply_text(link_msg,reply_markup=reply_markup)
         msg = 'https://t.me/{}?start={}'.format(config['botname'],data['id'][user])
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)

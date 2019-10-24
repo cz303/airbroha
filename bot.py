@@ -55,10 +55,10 @@ def start(update, context):
 def telegram(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        twtr_user = data['telegram'][user]
-        twitter_msg = "Follow dSTAR telegram channel https://t.me/dstarlab."
+        telegram_user = data['telegram'][user]
+        telegram_msg = "Follow dSTAR telegram channel https://t.me/dstarlab."
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
-        update.message.reply_text(twitter_msg,reply_markup=reply_markup)
+        update.message.reply_text(telegram_msg,reply_markup=reply_markup)
         msg = 'Your teleram username is {}'.format(telegram_user)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)

@@ -11,7 +11,7 @@ signup = config['signup']
 refr = config['ref']
 admins = config['admins']
 data = []
-dash_key = [['Twitter','Discord','ETH address'],['Referral Link','Referred'],['Balance','Details']]
+dash_key = [['Twitter','dSTAR messenger','TRX(TRON)'],['Referral Link','Referred'],['Balance','Details']]
 admin_key = [['Users','Get List']]
 
 webhook_url = 'Your Webook'
@@ -43,11 +43,11 @@ def start(update, context):
             data['process'][user] = "twitter"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
-            started_msg = 'TWITTER MESSAGE'
+            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab. Make some share, like, comment. Your twitter username?'
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:
-            welcome_msg = "DASHBOARD MESSAGE"
+            welcome_msg = "Follow dSTAR telegram channel. Download dSTAR messenger and you will receive 15 TRX(TRON). Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). Additionally, you can receive 5 TRX(TRON) for each invited user! https://dstarlab.com"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 
@@ -67,7 +67,7 @@ def eth(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         eth_addr = data['eth'][user]
-        msg = 'Your eth address is {}'.format(eth_addr)
+        msg = 'Your TRX(TRON) address is {}'.format(eth_addr)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
@@ -75,7 +75,7 @@ def discord(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         du = data['discord'][user]
-        msg = 'Your Discord username is {}'.format(du)
+        msg = 'Download dSTAR messenger, register your account> [Android], [iOS], [Desktop] Your dStar username? {}'.format(du)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
@@ -181,8 +181,8 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("admin",admin))
     dp.add_handler(RegexHandler("^Twitter$",twitter))
-    dp.add_handler(RegexHandler("^ETH address$",eth))
-    dp.add_handler(RegexHandler("^Discord$",discord))
+    dp.add_handler(RegexHandler("^TRX address$",eth))
+    dp.add_handler(RegexHandler("^dStar$",discord))
     dp.add_handler(RegexHandler("^Referral Link$",link))
     dp.add_handler(RegexHandler("^Referred$",ref))
     dp.add_handler(RegexHandler("^Users$",users))

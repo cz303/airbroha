@@ -47,7 +47,7 @@ def start(update, context):
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:
-            welcome_msg = "Welcome to dSTAR airdrop bot!\n"+"Follow dSTAR telegram channel.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user! https://dstarlab.com"
+            welcome_msg = "Welcome to dSTAR airdrop bot!\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!\n"+"https://dstarlab.com"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 

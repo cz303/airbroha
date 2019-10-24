@@ -95,7 +95,7 @@ def extra(update, context):
             data['process'][user] = 'dSTAR messenger'
             json.dump(data,open('users.json','w'))
             update.message.reply_text("Download dSTAR messenger, register your account https://dstarlab.com/.\n"+"Your dStar username?")
-        elif data["process"][user] == 'discord':
+        elif data["process"][user] == 'dSTAR messenger':
             data['discord'][user] = update.message.text
             data['process'][user] = "eth"
             json.dump(data,open('users.json','w'))

@@ -27,8 +27,8 @@ def start(update, context):
                 data['twitter'][user] = ""
             if user not in data['eth']:
                 data['eth'][user] = ""
-            if user not in data['discord']:
-                data['discord'][user] = ""
+            if user not in data['dSTAR messenger']:
+                data['dSTAR messenger'][user] = ""
             ref_id = update.message.text.split()
             if len(ref_id) > 1:
                 data['ref'][user] = ref_id[1]
@@ -43,7 +43,7 @@ def start(update, context):
             data['process'][user] = "twitter"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
-            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab."+"Make some share, like, comment.'
+            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab."\n+"Make some share, like, comment.'
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:
@@ -92,9 +92,9 @@ def extra(update, context):
         user = str(update.message.chat.username)
         if data["process"][user] == 'twitter':
             data['twitter'][user] = update.message.text
-            data['process'][user] = 'discord'
+            data['process'][user] = 'dSTAR messenger'
             json.dump(data,open('users.json','w'))
-            update.message.reply_text("DISCORD MESSAGE")
+            update.message.reply_text("Download dSTAR messenger, register your account https://dstarlab.com/.\n"+"Your dStar username?")
         elif data["process"][user] == 'discord':
             data['discord'][user] = update.message.text
             data['process'][user] = "eth"

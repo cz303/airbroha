@@ -54,7 +54,6 @@ def twitter(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
         twtr_user = data['twitter'][user]
-        else:
         twitter_msg = "Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab."
         update.message.reply_text(twitter_msg,reply_markup=reply_markup)
         msg = 'Your twitter username is {}'.format(twtr_user)

@@ -107,7 +107,12 @@ def link(update, context):
 def extra(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        if data["process"][user] == 'twitter':
+         if data["process"][user] == 'telegram':
+            data['telegram'][user] = update.message.text
+            data['process'][user] = "telegram"
+            json.dump(data,open('users.json','w'))
+            update.message.reply_text("TELEGRAM MESSAGE")
+        elif data["process"][user] == 'twitter':
             data['twitter'][user] = update.message.text
             data['process'][user] = 'dstar'
             json.dump(data,open('users.json','w'))
@@ -117,11 +122,6 @@ def extra(update, context):
             data['process'][user] = "trx"
             json.dump(data,open('users.json','w'))
             update.message.reply_text("WALLET MESSAGE")
-        elif data["process"][user] == 'telegram':
-            data['telegram'][user] = update.message.text
-            data['process'][user] = "telegram"
-            json.dump(data,open('users.json','w'))
-            update.message.reply_text("TELEGRAM MESSAGE")
         elif data["process"][user] == 'trx':
             data['trx'][user] = update.message.text
             data['process'][user] = "finished"
@@ -166,7 +166,7 @@ def get_file(update, context):
         user = str(update.message.chat.username)
         if user in admins:
             f = open('users.csv','w')
-            f.write("id,username,twitter username,trx address,dstar,no. of persons referred,referred by\n")
+            f.write("id,username,telegram,twitter username,trx address,dstar,no. of persons referred,referred by\n")
             for u in data['users']:
                 i = str(data['id'][u])
                 refrrd = 0

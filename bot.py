@@ -123,7 +123,7 @@ def ref(update, context):
         referred = 0
         if i in data['referred']:
             referred = data['referred'][i]
-        msg = "You have referred {} people".format(referred)
+        msg = "You have referred {} TRX".format(referred)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
@@ -168,7 +168,7 @@ def bal(update, context):
         if i in data['referred']:
             referred = data['referred'][i]
         bal = signup + refr * referred
-        msg = "You have {} tokens".format(bal)
+        msg = "You have {} TRX for referrals. TRX for completed tasks will be awarded after verification to your wallet.".format(bal)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 

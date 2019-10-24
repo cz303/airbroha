@@ -11,7 +11,7 @@ signup = config['signup']
 refr = config['ref']
 admins = config['admins']
 data = []
-dash_key = ['Telegram','dSTAR','Twitter'],['TRX','Referral Link','Referred'],['Balance','Details']]
+dash_key = ['Twitter','dSTAR','TRX'],['Referral Link','Referred'],['Balance','Details']]
 admin_key = [['Users','Get List']]
 
 webhook_url = 'Your Webook'

@@ -101,7 +101,7 @@ def extra(update, context):
             json.dump(data,open('users.json','w'))
             update.message.reply_text("WALLET MESSAGE")
         elif data["process"][user] == 'trx':
-            data['eth'][user] = update.message.text
+            data['trx'][user] = update.message.text
             data['process'][user] = "finished"
             json.dump(data,open('users.json','w'))
             msg = "DASHBOARD MESSAGE!"

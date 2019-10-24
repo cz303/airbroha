@@ -168,12 +168,12 @@ def bal(update, context):
         if i in data['referred']:
             referred = data['referred'][i]
         bal = signup + refr * referred
-        msg = "You have {} TRX for referrals. TRX for completed tasks will be awarded after verification to your wallet.".format(bal)
+        msg = "You have {} TRX for referrals.".format(bal)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
 def detail(update, context):
-            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab.\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            welcome_msg = " Тут можно расписать всю по полочкам"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 

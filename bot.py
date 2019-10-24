@@ -43,7 +43,7 @@ def start(update, context):
             data['process'][user] = "twitter"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
-            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab. Make some share, like, comment. Your twitter username?'
+            started_msg = 'Follow dSTAR https://twitter.com/dSTARLab."+"Make some share, like, comment.'
             update.message.reply_text(msg)
             update.message.reply_text(started_msg)
         else:

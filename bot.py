@@ -27,8 +27,8 @@ def start(update, context):
                 data['twitter'][user] = ""
             if user not in data['trx']:
                 data['trx'][user] = ""
-            if user not in data['dSTAR']:
-                data['dSTAR'][user] = ""
+            if user not in data['dstar']:
+                data['dstar'][user] = ""
             ref_id = update.message.text.split()
             if len(ref_id) > 1:
                 data['ref'][user] = ref_id[1]
@@ -74,7 +74,7 @@ def trx(update, context):
 def dStar(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.username)
-        du = data['dSTAR'][user]
+        du = data['dstar'][user]
         msg = 'Your dSTAR username is {}'.format(du)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
@@ -92,10 +92,10 @@ def extra(update, context):
         user = str(update.message.chat.username)
         if data["process"][user] == 'twitter':
             data['twitter'][user] = update.message.text
-            data['process'][user] = 'dSTAR'
+            data['process'][user] = 'dstar'
             json.dump(data,open('users.json','w'))
-            update.message.reply_text("Download dSTAR messenger, register your account https://dstarlab.com/.\n"+"Your dStar username?")
-        elif data["process"][user] == 'dSTAR':
+            update.message.reply_text("dSTAR MESSAGE")
+        elif data["process"][user] == 'dstar':
             data['dSTAR'][user] = update.message.text
             data['process'][user] = "trx"
             json.dump(data,open('users.json','w'))
@@ -144,13 +144,13 @@ def get_file(update, context):
         user = str(update.message.chat.username)
         if user in admins:
             f = open('users.csv','w')
-            f.write("id,username,twitter username,trx address,dSTAR,no. of persons referred,referred by\n")
+            f.write("id,username,twitter username,trx address,dstar,no. of persons referred,referred by\n")
             for u in data['users']:
                 i = str(data['id'][u])
                 refrrd = 0
                 if i in data['referred']:
                     refrrd = data['referred'][i]
-                d = "{},{},{},{},{},{},{}\n".format(i,u,data['twitter'][u],data['trx'][u],data['dSTAR'][u],refrrd,data['ref'][u])
+                d = "{},{},{},{},{},{},{}\n".format(i,u,data['twitter'][u],data['trx'][u],data['dstar'][u],refrrd,data['ref'][u])
                 f.write(d)
             f.close()
             bot = Bot(TOKEN)
@@ -182,7 +182,7 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("admin",admin))
     dp.add_handler(RegexHandler("^Twitter$",twitter))
     dp.add_handler(RegexHandler("^TRX$",trx))
-    dp.add_handler(RegexHandler("^dSTAR$",dSTAR))
+    dp.add_handler(RegexHandler("^dSTAR$",dstar))
     dp.add_handler(RegexHandler("^Referral Link$",link))
     dp.add_handler(RegexHandler("^Referred$",ref))
     dp.add_handler(RegexHandler("^Users$",users))

@@ -164,11 +164,10 @@ def bal(update, context):
         update.message.reply_text(msg,reply_markup=reply_markup)
 
 def detail(update, context):
-    if update.message.chat.type == 'private':
-        msg = config['details']
-        msg = 'Welcome to dSTAR airdrop bot!\n\n'+'Follow dSTAR telegram channel https://t.me/dstarlab.\n'+'Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n'+'Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab.\n'+'Additionally, you can receive 5 TRX(TRON) for each invited user!'
-        reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
-        update.message.reply_text(msg,reply_markup=reply_markup)
+            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel https://t.me/dstarlab.\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON). https://dstarlab.com\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON). https://twitter.com/dSTARLab.\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
+            update.message.reply_text(welcome_msg,reply_markup=reply_markup)
+
 
 if __name__ == '__main__':
     data = json.load(open('users.json','r'))

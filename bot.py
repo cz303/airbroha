@@ -173,7 +173,7 @@ def bal(update, context):
         update.message.reply_text(msg,reply_markup=reply_markup)
 
 def detail(update, context):
-            welcome_msg = "<b>Welcome to dSTAR airdrop bot!</b>\n\n"+"Follow dSTAR telegram channel. https://t.me/dstarlab.\n\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            welcome_msg = "<b>Welcome to dSTAR airdrop bot!</b>\n\n"+"Follow dSTAR telegram channel. https://t.me/dstarlab.\n\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!",reply_markup=markup, parse_mode= "HTML")
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
             update.message.reply_text(welcome_msg,reply_markup=reply_markup)
 

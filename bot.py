@@ -42,9 +42,9 @@ def start(update, context):
             data['id'][user] = data['total']
             data['process'][user] = "twitter"
         else:
-            welcome_msg = "Welcome to dSTAR airdrop bot!\n\n"+"Follow dSTAR telegram channel. https://t.me/dstarlab.\n\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
+            welcome_msg = "<b>Welcome to dSTAR airdrop bot!</b>\n\n"+"Follow dSTAR telegram channel. https://t.me/dstarlab.\n\n"+"Download dSTAR messenger and you will receive 15 TRX(TRON).\n\n"+"Follow dSTAR twitter page, make some like, comment, share and you will receive 5 TRX(TRON).\n\n"+"Additionally, you can receive 5 TRX(TRON) for each invited user!"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
-            update.message.reply_text(welcome_msg,reply_markup=reply_markup)
+            update.message.reply_text(welcome_msg,reply_markup=reply_markup,parse_mode= "HTML")
 
     else:
         msg = '{} \n. I don\'t reply in group, come in private'.format(config['intro'])

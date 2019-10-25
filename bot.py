@@ -123,7 +123,7 @@ def ref(update, context):
         referred = 0
         if i in data['referred']:
             referred = data['referred'][i]
-        msg = "You have referred {} TRX".format(referred)
+        msg = "You have referred {} people".format(referred)
         reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
         update.message.reply_text(msg,reply_markup=reply_markup)
 
